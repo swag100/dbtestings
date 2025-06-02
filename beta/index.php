@@ -4,7 +4,7 @@ session_start();
 <!DOCTYPE html>
 <head>
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
     <h1>Wow!</h1>
