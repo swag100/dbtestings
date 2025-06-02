@@ -5,16 +5,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     require_once("db.php");
     $db = Database::getConnection();
 
-    $host = $_SERVER['HTTP_HOST'];
-    $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
-
     $username = $_POST["username"];
     $email = $_POST["email"];
 
     if (empty($username)) {
         $_SESSION["FORM_STATE"] = "FAILED";
         $_SESSION["FORM_STATE_MSG"] = "Please enter a username!";
-        header("Location: http://$host$uri/index.php");
+        header("Location: index.php");
         exit;
     }
 
@@ -23,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $_SESSION["FORM_STATE"] = "FAILED";
         $_SESSION["FORM_STATE_MSG"] = "Username taken!";
-        header("Location: http://$host$uri/index.php");
+        header("Location: index.php");
         exit;   
     }
     //cannot signup if email already registered!
@@ -31,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($result->num_rows > 0) {
         $_SESSION["FORM_STATE"] = "FAILED";
         $_SESSION["FORM_STATE_MSG"] = "Email already being used! try another";
-        header("Location: http://$host$uri/index.php");
+        header("Location: index.php");
         exit;   
     }
 
@@ -44,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $_SESSION["FORM_STATE"] = "SUCCESS";
     $_SESSION["FORM_STATE_MSG"] = "Account created!!!!!! thanks";
-    header("Location: http://$host$uri/index.php");
+    header("Location: index.php");
     exit;
 
 }
