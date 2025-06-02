@@ -1,0 +1,11 @@
+h1,h3{
+    margin: 0;
+}
+.succeedNotif{
+    background-color: palegreen;
+    border: 1px solid greenyellow;
+}
+.failNotif{
+    background-color: lightpink;
+    border: 1px solid red;
+}
