@@ -9,7 +9,7 @@ $host = $_SERVER['HTTP_HOST'];
 $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 $extra = 'index.php';
 //get db conn
-require_once("db.php");
+require_once("../includes/db.php");
 $db = Database::getConnection();
 
 
