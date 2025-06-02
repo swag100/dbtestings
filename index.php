@@ -60,7 +60,11 @@ session_start();
                 <button onclick='this.parentElement.remove();'>close</button>
             </div>
         ";
-    } 
+        unset($_SESSION["FORM_STATE"]);
+        unset($_SESSION["FORM_STATE_MSG"]);
+    }
+
+    //https://medium.com/@jpmorris/how-to-build-a-php-login-form-using-sessions-c7fb6d8ecebe
 
     ?>
 </body>
