@@ -57,7 +57,7 @@ session_start();
             <div class=$prettyClass>
                 <h3>$formState</h3>
                 <p>$formStateMsg</p>
-                <button onclick='this.remove();'>close</button>
+                <button onclick='this.parentElement.remove();'>close</button>
             </div>
         ";
     } 
