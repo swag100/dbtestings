@@ -47,8 +47,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;
     }
 
-    //check for beautiful  -- cannot signup if username taken
-    $result = $db->query("SELECT id FROM users WHERE user_name = '$username'");
+    if (strlen($username) < 3) {
+        $_SESSION["FORMSTATE"] = "FAILURE";
+        $_SESSION["FORMSTATE_MSG"] = "Your username must be atleast 3 letters long!";
+        
+        header("Location: index.php");
+        exit;
+    }
+    if (strlen($password) < 6) {
+        $_SESSION["FORMSTATE"] = "FAILURE";
+        $_SESSION["FORMSTATE_MSG"] = "Your password must be atleast 6 letters long!";
+        
+        header("Location: index.php");
+        exit;
+    }
+    
+    //cannot signup if username taken
+    $result = $db->query("SELECT user_id FROM users WHERE user_name = '$username'");
     if ($result->num_rows > 0) {
         $_SESSION["FORMSTATE"] = "FAILURE";
         $_SESSION["FORMSTATE_MSG"] = "Username taken!";
@@ -56,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;   
     }
     //cannot signup if email already registered!
-    $result = $db->query("SELECT id FROM users WHERE user_email = '$email'");
+    $result = $db->query("SELECT user_id FROM users WHERE user_email = '$email'");
     if ($result->num_rows > 0 && !empty($email)) {
         $_SESSION["FORMSTATE"] = "FAILURE";
         $_SESSION["FORMSTATE_MSG"] = "Email already being used! try another";
