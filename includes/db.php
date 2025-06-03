@@ -6,12 +6,12 @@ class Database {
     private static $db;
     private $connection;
 
-    private function __construct() {
+    private function __construct($dbName = "") {
         $this->connection = new MySQLi(
             "localhost",
             "root",
             "root",
-            "dbtestings"
+            $dbName
         );
     }
 
@@ -19,9 +19,9 @@ class Database {
         $this->connection->close();
     }
 
-    public static function getConnection() {
+    public static function getConnection($dbName = "") {
         if (self::$db == null) {
-            self::$db = new Database();
+            self::$db = new Database($dbName);
         }
         return self::$db->connection;
     }
