@@ -2,8 +2,30 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once("db.php");
+    require_once("includes/db.php");
     $db = Database::getConnection();
+
+    //Make sure the table exists.
+    $result = $db->query("CREATE DATABASE IF NOT EXISTS my_new_database;");
+    if(!$result){
+        echo "WHAT";
+        echo "Error creating table: " . $db->error;
+        exit;
+    }
+
+    $result = $db->query("CREATE TABLE users
+        (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(32) NOT NULL,
+            email VARCHAR(64),
+            joindate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+        );
+    ");
+    if(!$result){
+        echo "i failed early";
+        echo "Error creating table: " . $db->error;
+        exit;
+    }
 
     $username = $_POST["username"];
     $email = $_POST["email"];
@@ -16,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     //check for beautiful  -- cannot signup if username taken
-    $result = mysqli_query($db, "SELECT id FROM users WHERE username = '$username'");
+    $result = $db->query("SELECT id FROM users WHERE username = '$username'");
     if ($result->num_rows > 0) {
         $_SESSION["FORM_STATE"] = "FAILED";
         $_SESSION["FORM_STATE_MSG"] = "Username taken!";
@@ -24,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit;   
     }
     //cannot signup if email already registered!
-    $result = mysqli_query($db, "SELECT id FROM users WHERE email = '$email'");
+    $result = $db->query("SELECT id FROM users WHERE email = '$email'");
     if ($result->num_rows > 0) {
         $_SESSION["FORM_STATE"] = "FAILED";
         $_SESSION["FORM_STATE_MSG"] = "Email already being used! try another";
@@ -33,9 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     //okay, we CAN make an account
-    $result = mysqli_query($db, "INSERT INTO users (username, email) VALUES ('$username', '$email')");
+    $result = $db->query("INSERT INTO users (username, email) VALUES ('$username', '$email')");
     if(!$result){
-        echo mysqli_error($db);
         exit;
     }
 
