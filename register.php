@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $dbName = "dbtestings";
 
-    //Make sure the table exists.
+    //Make sure the database + table exists.
     $result = $db->query("CREATE DATABASE IF NOT EXISTS $dbName");
     if(!$result){
         echo "WHAT";
@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         )
     ");
     if(!$result){
-        echo "i failed early";
         echo "Error creating table: " . $db->error;
         exit;
     }
@@ -41,8 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($username) || empty($password)) {
         $problem = empty($username) ? "username" : "password";
 
-        $_SESSION["FORM_STATE"] = "FAILED";
-        $_SESSION["FORM_STATE_MSG"] = "Please enter a $problem!";
+        $_SESSION["FORMSTATE"] = "FAILURE";
+        $_SESSION["FORMSTATE_MSG"] = "Please enter a $problem!";
         
         header("Location: index.php");
         exit;
@@ -51,16 +50,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //check for beautiful  -- cannot signup if username taken
     $result = $db->query("SELECT id FROM users WHERE user_name = '$username'");
     if ($result->num_rows > 0) {
-        $_SESSION["FORM_STATE"] = "FAILED";
-        $_SESSION["FORM_STATE_MSG"] = "Username taken!";
+        $_SESSION["FORMSTATE"] = "FAILURE";
+        $_SESSION["FORMSTATE_MSG"] = "Username taken!";
         header("Location: index.php");
         exit;   
     }
     //cannot signup if email already registered!
     $result = $db->query("SELECT id FROM users WHERE user_email = '$email'");
     if ($result->num_rows > 0 && !empty($email)) {
-        $_SESSION["FORM_STATE"] = "FAILED";
-        $_SESSION["FORM_STATE_MSG"] = "Email already being used! try another";
+        $_SESSION["FORMSTATE"] = "FAILURE";
+        $_SESSION["FORMSTATE_MSG"] = "Email already being used! try another";
         header("Location: index.php");
         exit;   
     }
@@ -71,11 +70,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         VALUES ('$username', '$email', '$hash')
     ");
     if($result){
-        $_SESSION["FORM_STATE"] = "SUCCESS";
-        $_SESSION["FORM_STATE_MSG"] = "Account created!!!!!! thanks";
+        $_SESSION["FORMSTATE"] = "SUCCESS";
+        $_SESSION["FORMSTATE_MSG"] = "Account created!!!!!! thanks";
     }else{
-        $_SESSION["FORM_STATE"] = "FAILED";
-        $_SESSION["FORM_STATE_MSG"] = $db->error;
+        $_SESSION["FORMSTATE"] = "FAILURE";
+        $_SESSION["FORMSTATE_MSG"] = $db->error;
     }
 
     header("Location: index.php");

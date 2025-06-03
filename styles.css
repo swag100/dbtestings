@@ -1,13 +1,16 @@
 h1,h3{
     margin: 0;
 }
-.succeedNotif{
+.NOTIF{
     padding: 2px;
-    background-color: lightblue;
-    border: 1px solid blue;
+    background-color: lightgray;
+    border: 1px solid gray;
 }
-.failNotif{
-    padding: 2px;
+.NOTIF_SUCCESS{
+    background-color: lightblue;
+    border-color: blue;
+}
+.NOTIF_FAILURE{
     background-color: lightpink;
-    border: 1px solid red;
+    border-color: red;
 }

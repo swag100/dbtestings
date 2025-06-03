@@ -37,23 +37,23 @@
             <!--create our wonderful pop up-->
             <?php
 
-            $formState = $_SESSION["FORM_STATE"];
-            $formStateMsg = $_SESSION["FORM_STATE_MSG"];
+            $formState = $_SESSION["FORMSTATE"];
+            $formStateMsg = $_SESSION["FORMSTATE_MSG"];
 
             $prettyClass = "\"succeedNotif\"";
-            if($_SESSION["FORM_STATE"] == "FAILED"){
+            if($formState == "FAILED"){
                 $prettyClass = "\"failNotif\"";
             }
             
-            if($_SESSION["FORM_STATE"] == "FAILED" || $_SESSION["FORM_STATE"] == "SUCCESS"){
+            if($formState == "FAILURE" || $formState == "SUCCESS"){
                 echo "
-                    <div class=$prettyClass>
+                    <div class=\"NOTIF NOTIF_$formState\">
                         <span><b>$formState: </b>$formStateMsg</span>
                         <button onclick=\"this.parentElement.remove();\">close</button>
                     </div>
                 ";
-                unset($_SESSION["FORM_STATE"]);
-                unset($_SESSION["FORM_STATE_MSG"]);
+                unset($_SESSION["FORMSTATE"]);
+                unset($_SESSION["FORMSTATE_MSG"]);
             }
 
             ?>
