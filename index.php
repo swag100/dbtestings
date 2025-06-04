@@ -52,6 +52,7 @@ include("includes/head.php");
                 <b>$content</b> —
                 <i>posted by</i> <a href=\"users.php?id=$authorId\">$author</a>: <i>$postdate</i>
             </div>";
+            //TODO. CREATE reply button/link. Idk which one it would be.
         }
     } else {
         echo "Looks like there are NO blurbs... Register an account and make one!";
