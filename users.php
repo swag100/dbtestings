@@ -43,22 +43,9 @@
 
             //TODO: make user blurb editable.
 
-            if($canEdit){
-                echo "<div class=\"NOTIF\"><i>This is your page!</i></div>";
-            }
 
-            echo "<h1>$username's Page</h1>
-            <small>id: $pageId</small>
-            <fieldset>
-                <legend>User Information</legend>
-                <span><b>Register date: </b>$joindate</span><br>
-                <span><b>Blurb: </b>$userblurb</span>
-            </fieldset>
-            <fieldset>
-                <legend>Posts</legend>
-                <i>Coming soon!</i>
-            </fieldset>
-            ";
+            //load html since vars are set
+            include("user.php");
         }else{
             echo "<h1>Users Page, View Users</h1>";
             $result = $db->query("SELECT user_id, user_name FROM users");
