@@ -18,7 +18,7 @@ include("includes/head.php");
 
     <fieldset>
         <legend>Edit Your Profile;</legend>
-        <form action="forms/changeprofile.php">
+        <form action="forms/changeprofile.php" method="post">
             <label for="blurb">Blurb: </label>
             <input type="text" name="blurb" id="blurb" placeholder="How am i feeling?"> <br>
             <label for="description">About Me: </label>
