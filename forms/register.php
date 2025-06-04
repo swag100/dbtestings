@@ -21,11 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //Make sure the database + table exists.
     $result = $db->query("CREATE DATABASE IF NOT EXISTS $dbName");
-    if(!$result){
-        echo "WHAT";
-        echo "Error creating table: " . $db->error;
-        exit;
-    }
+    if(!$result){ failure($db->error); }
 
     require_once("../classes/db.php");
     $db = Database::getConnection($dbName);
@@ -41,10 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             user_joindate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
     ");
-    if(!$result){
-        echo "Error creating table: " . $db->error;
-        exit;
-    }
+    if(!$result){ failure($db->error); }
 
     $username = htmlspecialchars($_POST["username"]);
     $email = htmlspecialchars($_POST["email"]);

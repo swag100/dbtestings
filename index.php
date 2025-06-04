@@ -1,12 +1,11 @@
-<?php session_start(); ?>
 <!DOCTYPE html>
-<head>
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<?php 
+session_start();
+include("includes/head.php"); 
+?>
 <body>
     <?php
-    include_once("elements/header.php");
+    include("includes/header.php");
     ?>
     <fieldset>
         <legend>Get into an account</legend>
@@ -20,8 +19,8 @@
             <label for="password">Password: </label>
             <input type="password" id="password" name="password" autocomplete="off" placeholder="Creative password"> <br>
 
-            <button onclick="this.parentElement.action = 'includes/login.php';">Log In</button>
-            <button onclick="this.parentElement.action = 'includes/register.php';">Register!</button>
+            <button onclick="this.parentElement.action = 'forms/login.php';">Log In</button>
+            <button onclick="this.parentElement.action = 'forms/register.php';">Register!</button>
 
         </form>
 

@@ -6,10 +6,13 @@
     </ul>
     
     <?php
+    
     require_once("classes/db.php");
     $db = Database::getConnection("dbtestings");
 
-    if(isset($_SESSION["USER_ID"])){
+    $loggedIn = isset($_SESSION["USER_ID"]);
+
+    if($loggedIn){
         $userId = $_SESSION["USER_ID"];
 
         $result = $db->query("SELECT user_name FROM users WHERE user_id = $userId");
@@ -17,14 +20,16 @@
             $row = $result->fetch_assoc();
             $result = $row["user_name"];
         }
-
-        //put logout button
-        echo "<h1>Hello, <a href=\"users.php?id=$userId\">$result</a></h1>
-        
-        <form action=\"includes/logout.php\" method=\"post\">
-            <input type=\"submit\" name=\"LOGOUT\" value=\"LOG out\">
-        </form>";
     }
 
     ?>
+
+    <?php if($loggedIn): ?>
+        <h1>Hello, <a href="users.php?id=<?php echo $userId?>"><?php echo $result?></a></h1>
+        
+        <form action="forms/logout.php" method="post">
+            <input type="submit" name="LOGOUT" value="LOG out">
+        </form>
+    <?php endif; ?>
+
 </div>

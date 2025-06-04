@@ -1,13 +1,10 @@
 <!DOCTYPE html>
-<head>
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+<?php include("includes/head.php"); ?>
 <body>
     <?php
         session_start();
 
-        include_once("elements/header.php");
+        include("includes/header.php");
 
         require_once('classes/db.php');
         $db = Database::getConnection("dbtestings");
@@ -45,7 +42,7 @@
 
 
             //load html since vars are set
-            include("user.php");
+            include("includes/user.php");
         }else{
             echo "<h1>Users Page, View Users</h1>";
             $result = $db->query("SELECT user_id, user_name FROM users");
