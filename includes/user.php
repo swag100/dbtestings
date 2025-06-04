@@ -55,7 +55,7 @@
             $postdate = $row["blurb_postdate"];
 
             echo "<div class=\"BLURB\">
-            <b>$content</b> —
+                <b>$content</b> —
                 <i>posted: $postdate</i>
             </div>";
         }
