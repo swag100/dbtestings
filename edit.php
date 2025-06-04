@@ -7,6 +7,7 @@ include("includes/head.php");
     
     <?php 
     include("includes/header.php"); 
+    include("includes/notification.php"); 
 
     //PREVENT this page from being accessed when not logged in
     if(!isset($_SESSION["USER_ID"])){

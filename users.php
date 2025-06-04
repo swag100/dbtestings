@@ -5,6 +5,7 @@
         session_start();
 
         include("includes/header.php");
+        include("includes/notification.php"); 
 
         require_once('classes/db.php');
         $db = Database::getConnection("dbtestings");
