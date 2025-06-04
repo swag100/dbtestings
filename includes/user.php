@@ -12,6 +12,13 @@
     <span><b>Register date: </b><?php echo $joindate?></span><br>
     <span>
         <b>Blurb: </b><?php echo $userblurb?>
+
+        <?php if($canEdit): ?>
+            <span>[<a href="edit.php">edit</a>]</span>
+        <?php endif; ?>
+    </span>
+    <span>
+        <b>About <?php echo $username?>: </b><?php echo $userdesc?>
         
         <?php if($canEdit): ?>
             <span>[<a href="edit.php">edit</a>]</span>

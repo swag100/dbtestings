@@ -38,6 +38,10 @@
             if(!$userblurb){
                 $userblurb = "none";
             }
+            $userdesc = $row["user_desc"];
+            if(!$userdesc){
+                $userdesc = "none";
+            }
 
             //TODO: make user blurb editable.
 
