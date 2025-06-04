@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             user_name VARCHAR(32) NOT NULL,
             user_email VARCHAR(64),
             user_password VARCHAR(255),
+            user_blurb VARCHAR(255),
             user_joindate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
     ");
@@ -63,6 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $emailResult = $db->query("SELECT user_id FROM users WHERE user_email = '$email'");
     if ($emailResult->num_rows > 0 && !empty($email)) {
         failure("Email already being used! try another");
+    }
+    //verify email makes sense
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        failure("Email invalid format");
     }
 
     //okay, we CAN make an account

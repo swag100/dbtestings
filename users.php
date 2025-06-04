@@ -36,6 +36,13 @@
             $username = $row["user_name"];
             $joindate = $row["user_joindate"];
 
+            $userblurb = $row["user_blurb"];
+            if(!$userblurb){
+                $userblurb = "none";
+            }
+
+            //TODO: make user blurb editable.
+
             if($canEdit){
                 echo "<div class=\"NOTIF\"><i>This is your page!</i></div>";
             }
@@ -44,7 +51,8 @@
             <small>id: $pageId</small>
             <fieldset>
                 <legend>User Information</legend>
-                <span><b>Join date: </b>$joindate</span>
+                <span><b>Register date: </b>$joindate</span><br>
+                <span><b>Blurb: </b>$userblurb</span>
             </fieldset>
             <fieldset>
                 <legend>Posts</legend>
