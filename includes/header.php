@@ -32,4 +32,6 @@
         </form>
     <?php endif; ?>
 
+    <?php include("notification.php"); ?>
+
 </div>

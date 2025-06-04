@@ -33,10 +33,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             user_name VARCHAR(32) NOT NULL,
             user_email VARCHAR(64),
             user_password VARCHAR(255),
-            user_blurb VARCHAR(64),
+            user_status VARCHAR(64),
             user_desc VARCHAR(255),
             user_joindate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
+    ");
+    if(!$result){ failure($db->error); }
+
+    //BLURBS table!!
+    $result = $db->query("CREATE TABLE IF NOT EXISTS blurbs
+        (
+            blurb_id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            blurb_author INT UNSIGNED, 
+            blurb_content VARCHAR(255) NOT NULL,
+            blurb_postdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            blurb_predecessor INT UNSIGNED,
+            FOREIGN KEY (blurb_author) REFERENCES users(user_id)
+        );
     ");
     if(!$result){ failure($db->error); }
 

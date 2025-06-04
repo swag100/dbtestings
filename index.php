@@ -6,7 +6,6 @@ include("includes/head.php");
 <body>
     <?php
     include("includes/header.php");
-    include("includes/notification.php");
     ?>
     <fieldset>
         <legend>Get into an account</legend>

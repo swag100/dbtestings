@@ -5,7 +5,6 @@
         session_start();
 
         include("includes/header.php");
-        include("includes/notification.php"); 
 
         require_once('classes/db.php');
         $db = Database::getConnection("dbtestings");
@@ -34,16 +33,16 @@
             $username = $row["user_name"];
             $joindate = $row["user_joindate"];
 
-            $userblurb = $row["user_blurb"];
-            if(!$userblurb){
-                $userblurb = "none";
+            $userstatus = $row["user_status"];
+            if(!$userstatus){
+                $userstatus = "none";
             }
             $userdesc = $row["user_desc"];
             if(!$userdesc){
                 $userdesc = "none";
             }
 
-            //TODO: make user blurb editable.
+            //TODO: make user status editable.
 
 
             //load html since vars are set

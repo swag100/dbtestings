@@ -11,7 +11,7 @@
     <legend>User Information</legend>
     <span><b>Register date: </b><?php echo $joindate?></span><br>
     <span>
-        <b>Blurb: </b><?php echo $userblurb?>
+        <b>Status: </b><?php echo $userstatus?>
 
         <?php if($canEdit): ?>
             <span>[<a href="edit.php">edit</a>]</span>

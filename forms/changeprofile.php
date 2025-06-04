@@ -12,11 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $userId = $_SESSION["USER_ID"];
-    $blurb = $_POST["blurb"];
+    $status = $_POST["status"];
     $desc = $_POST["description"];
 
     //edit our record
-    $result = $db->query("UPDATE users SET user_blurb = '$blurb', user_desc = '$desc' WHERE user_id = $userId;");
+    $result = $db->query("UPDATE users SET user_status = '$status', user_desc = '$desc' WHERE user_id = $userId;");
     if(!$result){
         $_SESSION["FORMSTATE"] = "FAILURE";
         $_SESSION["FORMSTATE_MSG"] = $db->error;
