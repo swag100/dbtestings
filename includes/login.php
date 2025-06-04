@@ -2,14 +2,15 @@
 session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    require_once("includes/db.php");
+    require_once("../classes/db.php");
     $db = Database::getConnection("dbtestings");
 
     $username = htmlspecialchars($_POST["username"]);
     $email = htmlspecialchars($_POST["email"]);
     $password = htmlspecialchars($_POST["password"]);
 
-    $result = $db->query("SELECT user_id, user_name, user_password FROM users WHERE user_name = '$username'");
+    $result = $db->query("SELECT user_id, user_name, user_password FROM users 
+    WHERE user_name = '$username' OR user_email = '$email'");
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
@@ -29,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $_SESSION["FORMSTATE_MSG"] = "That user doesn't exist.";
     }
     
-    header("Location: index.php");
-    exit;   
 }
+
+header("Location: ../index.php");
+exit;   

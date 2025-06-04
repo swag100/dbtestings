@@ -5,19 +5,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="header">
-        <h1>Dbtestings</h1><small>by Timothy Tripp</small>
-        <ul class="nav">
-            <li><a href="./">homne</a></li>
-            <li><a href="./users.php">users</a></li>
-        </ul>
-    </div>
     <?php
-    
-    if(isset($_SESSION["USER_ID"])){
-        //put logout button
-    }
-    
+    include_once("elements/header.php");
     ?>
     <fieldset>
         <legend>Get into an account</legend>
@@ -31,8 +20,8 @@
             <label for="password">Password: </label>
             <input type="password" id="password" name="password" autocomplete="off" placeholder="Creative password"> <br>
 
-            <button onclick="this.parentElement.action = 'login.php';">Log In</button>
-            <button onclick="this.parentElement.action = 'register.php';">Register!</button>
+            <button onclick="this.parentElement.action = 'includes/login.php';">Log In</button>
+            <button onclick="this.parentElement.action = 'includes/register.php';">Register!</button>
 
         </form>
 
