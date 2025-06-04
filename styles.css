@@ -32,3 +32,8 @@ h1,h2,h3,h4,h5,h6{
     background-color: lightpink;
     border-color: red;
 }
+.BLURB{
+    border:solid 1px black;
+    width:fit-content;
+    padding:6px;
+}

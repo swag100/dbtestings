@@ -1,5 +1,5 @@
 <div class="header">
-    <h1>Dbtestings</h1><small>by Timothy Tripp</small>
+    <h2>Dbtestings</h2><small>by Timothy Tripp</small>
     <ul class="nav">
         <li><a href="./">homne</a></li>
         <li><a href="./users.php">users</a></li>

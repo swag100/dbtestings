@@ -26,6 +26,42 @@
     </span>
 </fieldset>
 <fieldset>
-    <legend>Posts</legend>
-    <i>Coming soon!</i>
+    <legend>Blurbs</legend>
+
+    <?php if($canEdit): ?>
+        <div class="BLURB">
+            <h3>Create a Blurb</h3>
+            <form action="forms/postblurb.php" method="post">
+                <label for="content">Content: </label>
+                <textarea 
+                    name="content" 
+                    id="content" 
+                    rows="8"
+                    cols="64"
+                    placeholder="What are you up to.."
+                ></textarea><br>
+                <input type="submit">
+            </form>
+        </div>
+    <?php endif; ?>
+
+    <h3><?php echo $username?>'s Blurbs</h3>
+    <?php
+    // SHOW USER'S BLURBS
+    $result = $db->query("SELECT * FROM blurbs WHERE blurb_author = $pageId");
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            $content = $row["blurb_content"];
+            $postdate = $row["blurb_postdate"];
+
+            echo "<div class=\"BLURB\">
+            <b>$content</b> —
+                <i>posted: $postdate</i>
+            </div>";
+        }
+    } else {
+        echo "User has not posted any blurbs yet!";
+    }
+    
+    ?>
 </fieldset>

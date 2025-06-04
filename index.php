@@ -7,6 +7,8 @@ include("includes/head.php");
     <?php
     include("includes/header.php");
     ?>
+    <!--<h1>Blurble</h1>-->
+
     <fieldset>
         <legend>Get into an account</legend>
         <form id="accountForm" method="post">
@@ -24,5 +26,7 @@ include("includes/head.php");
 
         </form>
     </fieldset>
+
+    <!--view all blurbs-->
 </body>
 </html>
