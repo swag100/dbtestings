@@ -16,7 +16,7 @@
         <?php if($canEdit): ?>
             <span>[<a href="edit.php">edit</a>]</span>
         <?php endif; ?>
-    </span>
+    </span> <br>
     <span>
         <b>About <?php echo $username?>: </b><?php echo $userdesc?>
         
