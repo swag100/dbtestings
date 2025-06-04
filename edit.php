@@ -4,17 +4,28 @@ session_start();
 include("includes/head.php"); 
 ?>
 <body>
-    <?php include("includes/header.php"); ?>
+    
+    <?php 
+    include("includes/header.php"); 
+
+    //PREVENT this page from being accessed when not logged in
+    if(!isset($_SESSION["USER_ID"])){
+        header("Location: index.php");
+        exit;
+    }
+    
+    ?>
+
     <fieldset>
         <legend>Edit Your Profile;</legend>
         <form action="forms/changeprofile.php">
             <label for="blurb">Blurb: </label>
             <input type="text" name="blurb" id="blurb" placeholder="How am i feeling?"> <br>
-            <label for="blurb">About Me: </label>
+            <label for="description">About Me: </label>
             <textarea 
                 name="description" 
                 id="description" 
-                placeholder="Write some inline CSS here and customize your profile!"
+                placeholder="Write some HTML here and customize your profile!"
                 rows="8"
                 cols="64"
             ></textarea> <br> <br>
@@ -24,7 +35,3 @@ include("includes/head.php");
     <a href="users.php?id=<?php echo $_SESSION["USER_ID"]; ?>">⇐ back to my profile</a>
 </body>
 </html>
-
-<?php
-
-//Page to edit profile info!

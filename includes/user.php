@@ -11,10 +11,11 @@
     <legend>User Information</legend>
     <span><b>Register date: </b><?php echo $joindate?></span><br>
     <span>
-        <b>Blurb: </b>
-        <?php echo $userblurb?>
+        <b>Blurb: </b><?php echo $userblurb?>
         
-        <span>[<a href="edit.php">edit</a>]</span>
+        <?php if($canEdit): ?>
+            <span>[<a href="edit.php">edit</a>]</span>
+        <?php endif; ?>
     </span>
 </fieldset>
 <fieldset>

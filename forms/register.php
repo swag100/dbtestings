@@ -33,7 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             user_name VARCHAR(32) NOT NULL,
             user_email VARCHAR(64),
             user_password VARCHAR(255),
-            user_blurb VARCHAR(255),
+            user_blurb VARCHAR(64),
+            user_desc VARCHAR(255),
             user_joindate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
         )
     ");

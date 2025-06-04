@@ -6,6 +6,28 @@ include("includes/head.php");
 <body>
     <?php
     include("includes/header.php");
+
+    //STATUS POPUP
+
+    $formState = $_SESSION["FORMSTATE"];
+    $formStateMsg = $_SESSION["FORMSTATE_MSG"];
+
+    $prettyClass = "\"succeedNotif\"";
+    if($formState == "FAILED"){
+        $prettyClass = "\"failNotif\"";
+    }
+    
+    if($formState == "FAILURE" || $formState == "SUCCESS"){
+        echo "
+            <div class=\"NOTIF NOTIF_$formState\">
+                <span><b>$formState: </b>$formStateMsg</span>
+                <button onclick=\"this.parentElement.remove();\">close</button>
+            </div>
+        ";
+        unset($_SESSION["FORMSTATE"]);
+        unset($_SESSION["FORMSTATE_MSG"]);
+    }
+
     ?>
     <fieldset>
         <legend>Get into an account</legend>
@@ -23,30 +45,6 @@ include("includes/head.php");
             <button onclick="this.parentElement.action = 'forms/register.php';">Register!</button>
 
         </form>
-
-        <!--create our wonderful pop up-->
-        <?php
-
-        $formState = $_SESSION["FORMSTATE"];
-        $formStateMsg = $_SESSION["FORMSTATE_MSG"];
-
-        $prettyClass = "\"succeedNotif\"";
-        if($formState == "FAILED"){
-            $prettyClass = "\"failNotif\"";
-        }
-        
-        if($formState == "FAILURE" || $formState == "SUCCESS"){
-            echo "
-                <div class=\"NOTIF NOTIF_$formState\">
-                    <span><b>$formState: </b>$formStateMsg</span>
-                    <button onclick=\"this.parentElement.remove();\">close</button>
-                </div>
-            ";
-            unset($_SESSION["FORMSTATE"]);
-            unset($_SESSION["FORMSTATE_MSG"]);
-        }
-
-        ?>
     </fieldset>
 </body>
 </html>
