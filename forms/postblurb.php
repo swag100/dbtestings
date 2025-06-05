@@ -38,5 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-header("Location: ../users.php?id=" . $_SESSION["USER_ID"]);
-exit;
+//GO TO PREVIOUS PAGE. ITS SO EASY?
+if (isset($_SERVER["HTTP_REFERER"])) {
+    header("Location: " . $_SERVER["HTTP_REFERER"]);
+}

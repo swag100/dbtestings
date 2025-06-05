@@ -14,8 +14,11 @@
         }
 
         //get all replies to this blurb
+
+        //TODO: There is an ERROR; only showing FIRST reply.
         $replyResult = $db->query("SELECT * FROM blurbs WHERE blurb_predecessor = $blurbId");
         if ($replyResult->num_rows > 0) {
+            echo "<small>$replyResult->num_rows replies</small>";
             while($row = $replyResult->fetch_assoc()) {
                 $blurbId = $row["blurb_id"];
                 $content = $row["blurb_content"];
