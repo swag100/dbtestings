@@ -17,6 +17,7 @@
 
         //TODO: There is an ERROR; only showing FIRST reply.
         //using RETURN; has something to do with it!
+        //It DOES go through all 6, but including Blurb.php will not work.
         $replyResult = $db->query("SELECT * FROM blurbs WHERE blurb_predecessor = $blurbId");
         if ($replyResult->num_rows > 0) {
             echo "<small>$replyResult->num_rows replies</small>";
@@ -36,6 +37,7 @@
                 }
 
                 //include this html just like a user
+                //if this has no replies, don't include again. Just generate HTML.
                 include("includes/blurb.php");
             }
         }
