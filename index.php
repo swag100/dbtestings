@@ -48,6 +48,7 @@ include("includes/head.php");
                 $row = $nameResult->fetch_assoc();
                 $author = $row["user_name"];
             }
+
             include("includes/blurb.php");
             
             //TODO. CREATE reply button/link. Idk which one it would be.

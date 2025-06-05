@@ -16,7 +16,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(empty($content)){
         $_SESSION["FORMSTATE"] = "FAILURE";
         $_SESSION["FORMSTATE_MSG"] = "Post content may not be empty!";
-        header("Location: ../users.php?id=" . $_SESSION["USER_ID"]);
+        if (isset($_SERVER["HTTP_REFERER"])) {
+            header("Location: " . $_SERVER["HTTP_REFERER"]);
+        }
         exit;
     }
 
@@ -24,6 +26,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if(isset($_SESSION["BLURB_REPLYINGTO"])){
         $blurbId = $_SESSION["BLURB_REPLYINGTO"];
         $sql = "INSERT INTO blurbs (blurb_author, blurb_content, blurb_predecessor) VALUES ('$author', '$content', $blurbId)";
+    }
+
+    if(isset($_SESSION["BLURB_REPLYINGTO"])){
+        unset($_SESSION["BLURB_REPLYINGTO"]);
     }
 
     //okay, we CAN make an account
