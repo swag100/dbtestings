@@ -32,7 +32,7 @@ include("includes/head.php");
     <?php
     
     // SHOW USER'S BLURBS
-    $result = $db->query("SELECT * FROM blurbs");
+    $result = $db->query("SELECT * FROM blurbs WHERE blurb_predecessor IS NULL");
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
             $blurbId = $row["blurb_id"];
@@ -43,13 +43,11 @@ include("includes/head.php");
             $author = "unknown";
 
             //get author  name
-            $newResult = $db->query("SELECT user_name FROM users WHERE user_id = $authorId");
-            if ($newResult->num_rows > 0) {
-                $row = $newResult->fetch_assoc();
+            $nameResult = $db->query("SELECT user_name FROM users WHERE user_id = $authorId");
+            if ($nameResult->num_rows > 0) {
+                $row = $nameResult->fetch_assoc();
                 $author = $row["user_name"];
             }
-
-            //include this html just like a user
             include("includes/blurb.php");
             
             //TODO. CREATE reply button/link. Idk which one it would be.

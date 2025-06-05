@@ -13,6 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //remove script tag from description
     $content = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $content);
 
+    if(empty($content)){
+        $_SESSION["FORMSTATE"] = "FAILURE";
+        $_SESSION["FORMSTATE_MSG"] = "Post content may not be empty!";
+        header("Location: ../users.php?id=" . $_SESSION["USER_ID"]);
+        exit;
+    }
+
     $sql = "INSERT INTO blurbs (blurb_author, blurb_content) VALUES ('$author', '$content')";
     if(isset($_SESSION["BLURB_REPLYINGTO"])){
         $blurbId = $_SESSION["BLURB_REPLYINGTO"];
