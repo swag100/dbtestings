@@ -16,6 +16,7 @@
         //get all replies to this blurb
 
         //TODO: There is an ERROR; only showing FIRST reply.
+        //using RETURN; has something to do with it!
         $replyResult = $db->query("SELECT * FROM blurbs WHERE blurb_predecessor = $blurbId");
         if ($replyResult->num_rows > 0) {
             echo "<small>$replyResult->num_rows replies</small>";
