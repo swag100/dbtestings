@@ -12,8 +12,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     $userId = $_SESSION["USER_ID"];
-    $status = $_POST["status"];
+    $status = htmlspecialchars($_POST["status"]); // no html here
     $desc = $_POST["description"];
+
+    //remove script tag from description
+    $desc = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $desc);
 
     //edit our record
     $result = $db->query("UPDATE users SET user_status = '$status', user_desc = '$desc' WHERE user_id = $userId;");

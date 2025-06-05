@@ -35,6 +35,7 @@ include("includes/head.php");
     $result = $db->query("SELECT * FROM blurbs");
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
+            $blurbId = $row["blurb_id"];
             $content = $row["blurb_content"];
             $postdate = $row["blurb_postdate"];
 
@@ -48,10 +49,9 @@ include("includes/head.php");
                 $author = $row["user_name"];
             }
 
-            echo "<div class=\"BLURB\">
-                <b>$content</b> —
-                <i>posted by</i> <a href=\"users.php?id=$authorId\">$author</a>: <i>$postdate</i>
-            </div>";
+            //include this html just like a user
+            include("includes/blurb.php");
+            
             //TODO. CREATE reply button/link. Idk which one it would be.
         }
     } else {

@@ -28,22 +28,9 @@
 <fieldset>
     <legend>Blurbs</legend>
 
-    <?php if($canEdit): ?>
-        <div class="BLURB">
-            <h3>Create a Blurb</h3>
-            <form action="forms/postblurb.php" method="post">
-                <label for="content">Content: </label>
-                <textarea 
-                    name="content" 
-                    id="content" 
-                    rows="8"
-                    cols="64"
-                    placeholder="What are you up to.."
-                ></textarea><br>
-                <input type="submit">
-            </form>
-        </div>
-    <?php endif; ?>
+    <?php if($canEdit){
+        include("blurbmodal.php");
+    }?>
 
     <h3><?php echo $username?>'s Blurbs</h3>
     <?php
